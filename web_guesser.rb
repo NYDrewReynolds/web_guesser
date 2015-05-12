@@ -20,5 +20,10 @@ end
 get '/' do
   guess = params["guess"].to_i
   message = check_guess(guess)
+
+  if params["cheat"] == "true"
+    message += " Shh, the number is #{SECRET_NUMBER}."
+  end
+
   erb :index, :locals => {:number => SECRET_NUMBER, :message => message, :guess => guess}
 end
